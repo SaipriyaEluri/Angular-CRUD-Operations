@@ -1,0 +1,63 @@
+<div mat-dialog-header>
+    <h2 mat-dialog-title>{{data.action === 'ADD' ? 'Add' : data.action === 'EDIT' ? 'Update' : 'View'}} &nbsp;Your Task</h2>
+</div>
+
+<div mat-dialog-content>
+   
+    <form class="w-100" [formGroup]="TaskForm" (ngSubmit)="onSubmit()">
+
+        <mat-form-field sm sm-popup full class="w-100" appearance="outline">
+            <mat-label>Task No</mat-label>
+            <input type="number" matInput placeholder="Enter Task name" formControlName="taskNo"
+                [readonly]="data.action=='VIEW'" matInput>
+        </mat-form-field>
+        
+        <mat-form-field sm sm-popup full class="w-100" appearance="outline">
+            <mat-label>Task Name</mat-label>
+            <input [readonly]="data.action=='VIEW'" type="text" matInput placeholder="Enter Task name"
+                formControlName="taskName">
+        </mat-form-field>
+
+        <mat-form-field sm sm-popup full class="w-100" appearance="outline">
+            <mat-label>Description</mat-label>
+            <input [readonly]="data.action=='VIEW'" type="text" matInput placeholder="Enter Description"
+                formControlName="description">
+        </mat-form-field>
+
+        <mat-form-field sm sm-popup full class="w-100" appearance="outline">
+            <mat-label>Due Date</mat-label>
+            <input [readonly]="data.action=='VIEW'" matInput [matDatepicker]="picker" formControlName="dueDate">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field sm sm-popup full class="w-100" appearance="outline">
+            <mat-label>Priority</mat-label>
+            <mat-select *ngIf="data.action!='VIEW'" placeholder="select priority" formControlName="priority">
+                <mat-option *ngFor="let v of ['High','Medium','Low']" value={{v}}>{{v}}</mat-option>
+            </mat-select>
+            <input *ngIf="data.action=='VIEW'" readonly matInput formControlName="priority">
+
+        </mat-form-field>
+
+        <mat-form-field sm sm-popup full class="w-100" appearance="outline">
+            <mat-label>Completion Percentage</mat-label>
+            <input [readonly]="data.action=='VIEW'" matInput placeholder="Enter completion Percentage"
+                formControlName="completionPercentage">
+        </mat-form-field>
+
+        <mat-form-field sm sm-popup full class="w-100" appearance="outline">
+            <mat-label>Status</mat-label>
+            <mat-select *ngIf="data.action != 'VIEW'" placeholder="select status" formControlName="status">
+                <mat-option *ngFor="let s of ['In Progress','Completed']" value={{s}}>{{s}}</mat-option>
+            </mat-select>
+            <input *ngIf="data.action=='VIEW'" matInput readonly formControlName="status">
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions class="mt-3">
+    <div class="d-flex flex-row justify-content-end w-100 mb-2">
+        <button mat-button type="button" [mat-dialog-close]="false" class="me-2">Cancel</button>
+        <button mat-raised-button color="primary" type="submit" (click)="onSubmit()" class="me-3">Save</button>
+    </div>
+</div>

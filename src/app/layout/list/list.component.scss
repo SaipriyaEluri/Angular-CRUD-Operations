@@ -1,0 +1,48 @@
+.card_section{
+    display:flex;
+    justify-content: center;
+    min-height:200px;
+    max-height:100vh;
+    width:100%
+}
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  table {
+    box-shadow: none;
+    margin-top: 20px;
+
+    .mat-mdc-header-row {
+        height: 35px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: white;
+        background-color: #021740;
+    }
+
+    .mat-mdc-row {
+        height: 32px;
+        font-size: 0.85rem;
+    }
+    
+}
+.mat-mdc-raised-button:not(:disabled) {
+    background-color: #021740;
+}
+mat-icon{
+    cursor: pointer;
+}
+.badge{
+    display: inline-block !important;
+    color: #FFF !important;
+    border-radius: 20px;
+    font-size: 0.7rem !important;
+    width: fit-content !important;
+
+    &.greenbadge{
+        background-color: green;
+    }
+    &.bluebadge{
+        background-color: #021740;
+    }
+}
